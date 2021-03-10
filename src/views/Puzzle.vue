@@ -1,47 +1,49 @@
 <template>
-  <section class="hero">
+  <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
-        <p class="title">Hero</p>
-        <p class="subtitle">text</p>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="content">
-        <a @click="addPage">click</a>
-        {{ state.completePage }}
-        <router-link to="/">Home</router-link>
-        <!-- <a class="button">A button</a> -->
+        <div class="columns is-centered has-text-centered">
+          <component
+            v-if="progress.progressed"
+            :is="puzzles[progress.pageNumber]"
+          />
+          <div v-else>
+            You haven't made it here yet! Go back.
+            <router-link
+              class="button"
+              :to="{
+                name: 'Puzzle',
+                params: { pageNumber: state.reachedPages },
+              }"
+            >
+              Go back
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-class-component";
+import { Component } from "vue";
+import { Options, setup, Vue } from "vue-class-component";
+import One from "../puzzles/01.vue";
 import { Store } from "../store";
+import { useProgress } from "../use/progress";
 
-class Home extends Vue {
-  state = Store.state;
+const puzzleComponents: { [key: number]: Component } = {
+  1: One,
+};
 
-  mounted() {
-    console.log("MOUNTED PUZZLE");
-    this.log();
-  }
-
-  addPage() {
-    console.log("add 1: " + (this.state.completePage + 1).toString());
-    Store.setPageComplete(this.state.completePage + 1);
-    this.log();
-  }
-
-  log() {
-    console.log("Component state: " + this.state.completePage);
-    console.log("Store state: " + Store.state.completePage);
-  }
+Options({
+  components: puzzleComponents,
+});
+class Puzzle extends Vue {
+  readonly state = Store.state;
+  puzzles = puzzleComponents;
+  progress = setup(() => useProgress());
 }
 
-export default Home;
+export default Puzzle;
 </script>

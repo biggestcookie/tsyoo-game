@@ -1,6 +1,6 @@
 {
     "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         "editor.tabSize": 2
     },
     "[vue]": {
@@ -17,4 +17,6 @@
     "prettier.arrowParens": "always",
     "vetur.format.defaultFormatter.ts": "prettier",
     "vetur.format.defaultFormatter.html": "prettier",
+    "discord.detailsEditing": "{}",
+    "discord.detailsDebugging": "{}",
 }

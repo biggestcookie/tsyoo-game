@@ -10,7 +10,7 @@ export const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: "/puzzle",
+    path: "/:pageNumber",
     name: "Puzzle",
     component: () => import("../views/Puzzle.vue"),
     meta: {

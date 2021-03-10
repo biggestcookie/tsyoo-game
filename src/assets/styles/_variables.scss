@@ -1,13 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans&family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Space+Mono&display=swap");
 
 /* Fonts */
-$family-primary: "DM Sans", -apple-system, system-ui, BlinkMacSystemFont, Arial,
-  sans-serif;
-$family-secondary: "Inter", -apple-system, system-ui, BlinkMacSystemFont, Arial,
-  sans-serif;
+$family-primary: "DotGothic16", -apple-system, system-ui, BlinkMacSystemFont,
+  Arial, sans-serif;
+$family-secondary: "Space Mono", -apple-system, system-ui, BlinkMacSystemFont,
+  Arial, sans-serif;
+
+$white: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 4%);
+
+$scheme-main: $black;
+$scheme-invert: $white;
 
 /* Colors */
-$primary: #272d38;
-$secondary: #93b7be;
+$primary: $white;
+$secondary: $white;
 
 @import "bulma/bulma";
