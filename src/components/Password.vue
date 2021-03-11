@@ -1,14 +1,22 @@
 <template>
-  <form @submit="checkAnswer()" v-on:submit.prevent.self class="is-flex">
-    <input
-      class="input has-text-primary mr-4"
-      type="text"
-      v-model="answer"
-      :placeholder="placeholder"
-    />
-    <input type="submit" value="enter" />
-  </form>
-  <span v-if="isWrong" class="has-text-warning">Try again.</span>
+  <div>
+    <form @submit="checkAnswer()" v-on:submit.prevent.self class="is-flex">
+      <input
+        class="input has-text-primary mr-4"
+        type="text"
+        v-model="answer"
+        :placeholder="placeholder"
+      />
+      <input type="submit" value="enter" />
+    </form>
+    <span v-if="isWrong" class="wrong has-text-danger">
+      {{ wrongMessages[messageIndex] }}
+    </span>
+    <a class="has-text-warning" v-if="!showHint" @click="showHint = true">
+      Need a hint?
+    </a>
+    <hint :pageNumber="1" :showHint="showHint" />
+  </div>
 </template>
 
 <style lang="scss">
@@ -18,21 +26,35 @@
     color: $grey-light !important;
   }
 }
+a:hover {
+  text-decoration: underline;
+}
 </style>
 
 <script lang="ts">
-import { answers } from "../use/answers";
 import { defineComponent } from "vue";
+import Hint from "../components/Hint.vue";
 import { Store } from "../store";
+import { answers } from "../use/answers";
 
 export default defineComponent({
+  components: {
+    Hint,
+  },
   data: () => ({
     answer: "",
     isWrong: false,
+    showHint: false,
+    wrongMessages: ["Try again.", "No, try again."],
   }),
   props: {
     pageNumber: Number,
     placeholder: String,
+  },
+  computed: {
+    messageIndex(): number {
+      return Store.state.wrongGuesses[this.pageNumber!.toString()] % 2;
+    },
   },
   methods: {
     checkAnswer() {

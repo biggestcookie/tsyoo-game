@@ -9,6 +9,12 @@ export class Store {
       "3": 0,
       "4": 0,
     } as Record<string, number>,
+    hintUsed: {
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+    } as Record<string, boolean>,
   });
   public static readonly state = Store._state;
 
@@ -34,6 +40,11 @@ export class Store {
       "wrongGuesses",
       JSON.stringify(Store._state.wrongGuesses)
     );
+  }
+
+  public static addHintUsed(pageNumber: number) {
+    Store._state.hintUsed[pageNumber.toString()] = true;
+    localStorage.setItem("hintUsed", JSON.stringify(Store._state.hintUsed));
   }
 }
 

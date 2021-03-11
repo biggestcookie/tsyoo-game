@@ -1,7 +1,7 @@
 <template>
   <div class="column is-half puzzle-1">
     <div class="content">
-      <h1 class="is-bold has-text-primary my-5">game 1</h1>
+      <h1 class="is-bold has-text-primary my-5">game one</h1>
       <div class="block has-background-light p-6">
         <p class="has-text-justified">
           Thomas has been found dead in his apartment. <br /><br />
