@@ -7,18 +7,18 @@
             <p class="title has-text-primary is-uppercase is-1">tsyoo game</p>
             <div class="is-flex is-justify-content-space-evenly">
               <button
+                v-if="!hasProgress"
                 @click="start()"
-                class="button has-text-primary"
-                :class="{ appear: !progress.hasProgress }"
+                class="appear button has-text-primary"
               >
                 Start
               </button>
               <router-link
+                v-else
                 class="button is-primary"
-                v-if="progress.hasProgress"
                 :to="{
                   name: 'Puzzle',
-                  params: { pageNumber: state.reachedPages },
+                  params: { pageNumber: state.reachedPage },
                 }"
               >
                 Continue
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!progress.hasProgress" class="is-overlay"></div>
+    <div v-if="!hasProgress" class="is-overlay"></div>
   </section>
 </template>
 
@@ -79,19 +79,20 @@ import { Store } from "../store";
 import { useProgress } from "../use/progress";
 
 class Home extends Vue {
-  private readonly state = Store.state;
+  readonly state = Store.state;
+  hasProgress = this.state.reachedPage > 0;
 
   progress = setup(() => useProgress());
 
   start() {
-    if (!this.progress.hasProgress) {
+    if (!this.progress.hasReachedPage) {
       Store.setPageReached(1);
       localStorage.setItem("startTime", new Date().getTime().toString());
     }
     this.$router.push({
       name: "Puzzle",
       params: {
-        pageNumber: Store.state.reachedPages,
+        pageNumber: Store.state.reachedPage,
       },
     });
   }

@@ -4,7 +4,7 @@
       <div class="container">
         <div class="columns is-centered has-text-centered">
           <component
-            v-if="progress.progressed"
+            v-if="progress.hasReachedPage"
             :is="puzzles[progress.pageNumber]"
           />
           <div v-else>
@@ -13,7 +13,7 @@
               class="button"
               :to="{
                 name: 'Puzzle',
-                params: { pageNumber: state.reachedPages },
+                params: { pageNumber: state.reachedPage },
               }"
             >
               Go back
@@ -32,7 +32,7 @@ import One from "../puzzles/01.vue";
 import { Store } from "../store";
 import { useProgress } from "../use/progress";
 
-const puzzleComponents: { [key: number]: Component } = {
+const puzzleComponents: Record<number, Component> = {
   1: One,
 };
 

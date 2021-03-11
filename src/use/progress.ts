@@ -1,12 +1,12 @@
-import { ref, onMounted, watch } from "vue";
-import { useRouter, useRoute, RouteParams } from "vue-router";
+import { onMounted, ref, watch } from "vue";
+import { RouteParams, useRoute, useRouter } from "vue-router";
 import { Store } from "../store";
 
 export function useProgress() {
   const router = useRouter();
   const route = useRoute();
   const pageNumber = ref(0);
-  const hasProgress = ref(false);
+  const hasReachedPage = ref(false);
 
   onMounted(() => {
     checkProgress(route.params);
@@ -25,16 +25,16 @@ export function useProgress() {
 
   function checkProgress(latestParams: RouteParams) {
     const routeNumber = Number(latestParams?.pageNumber);
-    if (!routeNumber) {
+    if (routeNumber < 1) {
       router.push("/");
     }
     pageNumber.value = routeNumber;
-    hasProgress.value = pageNumber.value <= Store.state.reachedPage;
+    hasReachedPage.value = pageNumber.value <= Store.state.reachedPage;
   }
 
   return {
     pageNumber,
-    hasProgress,
+    hasReachedPage,
     setProgress,
   };
 }

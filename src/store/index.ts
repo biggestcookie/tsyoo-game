@@ -3,6 +3,12 @@ import { reactive } from "vue";
 export class Store {
   private static _state = reactive({
     reachedPage: 0,
+    wrongGuesses: {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+    } as Record<string, number>,
   });
   public static readonly state = Store._state;
 
@@ -11,6 +17,10 @@ export class Store {
     if (lastReachedPage) {
       Store._state.reachedPage = Number(lastReachedPage);
     }
+    const lastGuesses = localStorage.getItem("wrongGuesses");
+    if (lastGuesses) {
+      Store._state.wrongGuesses = JSON.parse(lastGuesses);
+    }
   }
 
   public static setPageReached(pageNumber: number) {
@@ -18,9 +28,12 @@ export class Store {
     localStorage.setItem("reachedPage", pageNumber.toString());
   }
 
-  private static log() {
-    console.log("Public state: " + Store.state.reachedPage);
-    console.log("Private state: " + Store._state.reachedPage);
+  public static addWrongGuess(pageNumber: number) {
+    Store._state.wrongGuesses[pageNumber.toString()]++;
+    localStorage.setItem(
+      "wrongGuesses",
+      JSON.stringify(Store._state.wrongGuesses)
+    );
   }
 }
 
