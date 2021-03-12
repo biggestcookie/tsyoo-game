@@ -48,6 +48,11 @@
 .background {
   background: #09061f;
 }
+@include until($tablet) {
+  .is-flex {
+    flex-direction: column;
+  }
+}
 </style>
 
 <script lang="ts">

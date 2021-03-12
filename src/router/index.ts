@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import Home from "../views/Home.vue";
+import Puzzle from "../views/Puzzle.vue";
+import Final from "../views/Final.vue";
 
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home.vue"),
+    component: Home,
     meta: {
       title: "start",
     },
@@ -12,7 +15,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/:pageNumber",
     name: "Puzzle",
-    component: () => import("../views/Puzzle.vue"),
+    component: Puzzle,
     meta: {
       title: "puzzle",
     },
@@ -20,7 +23,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/final",
     name: "Final",
-    component: () => import("../views/Final.vue"),
+    component: Final,
     meta: {
       title: "YOU WIN",
     },
