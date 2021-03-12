@@ -11,7 +11,7 @@
             <button
               v-show="count > 0"
               @click="count--"
-              class="button is-primary is-family-secondary"
+              class="button my-4 is-primary is-family-secondary"
             >
               &lt;
             </button>
@@ -21,7 +21,7 @@
             <button
               v-show="count < letters.length - 1"
               @click="count++"
-              class="button is-primary is-family-secondary"
+              class="button my-4 is-primary is-family-secondary"
             >
               &gt;
             </button>
@@ -43,6 +43,11 @@
 }
 .next {
   width: 44px;
+}
+@include until($tablet) {
+  .is-flex {
+    flex-direction: column;
+  }
 }
 </style>
 
