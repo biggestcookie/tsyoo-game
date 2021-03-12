@@ -24,15 +24,15 @@
       </div>
     </div>
     <password :pageNumber="4" placeholder="who murdered thomas?" />
-    <div class="is-overlay"></div>
+    <div class="is-overlay background"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Cardo&family=Reenie+Beanie&display=swap");
 
-.is-overlay {
-  background: #1f0b0b;
+.background {
+  background: #411616;
 }
 
 p {

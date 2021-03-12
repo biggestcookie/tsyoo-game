@@ -6,7 +6,7 @@
       v-model="answer"
       :placeholder="placeholder"
     />
-    <input type="submit" value="enter" />
+    <input type="submit" value="enter" :class="{ 'is-loading': loading }" />
   </form>
   <div class="my-4">
     <span v-if="isWrong" class="wrong has-text-danger">
@@ -50,6 +50,7 @@ export default defineComponent({
     isWrong: false,
     showHint: false,
     wrongMessages: ["Try again.", "No, try again."],
+    loading: false,
   }),
   props: {
     pageNumber: Number,
@@ -62,18 +63,24 @@ export default defineComponent({
   },
   methods: {
     checkAnswer() {
+      this.loading = true;
       if (this.answer.toLowerCase() === answers[this.pageNumber!]) {
         Store.setPageReached(this.pageNumber! + 1);
-        this.$router.push({
-          name: "Puzzle",
-          params: {
-            pageNumber: Store.state.reachedPage,
-          },
-        });
+        this.$router.push(
+          Store.state.reachedPage > 5
+            ? "/final"
+            : {
+                name: "Puzzle",
+                params: {
+                  pageNumber: Store.state.reachedPage,
+                },
+              }
+        );
       } else {
         this.isWrong = true;
         Store.addWrongGuess(this.pageNumber!);
       }
+      this.loading = false;
     },
   },
 });

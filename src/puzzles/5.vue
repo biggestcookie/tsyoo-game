@@ -1,13 +1,9 @@
 <template>
   <div class="column is-one-third puzzle-1">
     <div class="content">
-      <h1 class="is-bold has-text-primary">game two</h1>
-      <div class="block my-6">
-        <p class="is-family-secondary has-text-primary">
-          what is found on water's surface, but is never wet?
-        </p>
-      </div>
-      <password :pageNumber="2" placeholder="enter answer" />
+      <h1 class="is-bold has-text-primary">game five</h1>
+      <p class="has-text-primary">You have all the answers you need.</p>
+      <password :pageNumber="5" placeholder="enter keyword" />
     </div>
     <div class="is-overlay background"></div>
   </div>
@@ -15,9 +11,8 @@
 
 <style lang="scss" scoped>
 .background {
-  background: #075e5e;
+  background: $black;
 }
-
 </style>
 
 <script lang="ts">

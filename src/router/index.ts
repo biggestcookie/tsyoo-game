@@ -18,6 +18,14 @@ export const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/final",
+    name: "Final",
+    component: () => import("../views/Final.vue"),
+    meta: {
+      title: "YOU WIN",
+    },
+  },
+  {
     path: "/404",
     component: () => import("../views/404.vue"),
     meta: {

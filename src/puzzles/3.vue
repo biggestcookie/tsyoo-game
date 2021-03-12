@@ -38,14 +38,14 @@
         <password :pageNumber="3" placeholder="enter keyword" />
       </div>
     </div>
-    <div class="is-overlay"></div>
+    <div class="is-overlay background"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
 
-.is-overlay {
+.background {
   background: #09061f;
 }
 </style>

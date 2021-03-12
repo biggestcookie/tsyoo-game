@@ -27,7 +27,7 @@
 </template>
 
 <style lang="scss">
-.is-overlay {
+.background {
   pointer-events: none !important;
   z-index: -1 !important;
   position: fixed !important;
@@ -56,9 +56,11 @@
 import { Component } from "@vue/runtime-core";
 import { Options, setup, Vue } from "vue-class-component";
 import Password from "../components/Password.vue";
+import One from "../puzzles/1.vue";
 import Two from "../puzzles/2.vue";
 import Three from "../puzzles/3.vue";
 import Four from "../puzzles/4.vue";
+import Five from "../puzzles/5.vue";
 import { Store } from "../store";
 import { useProgress } from "../use/progress";
 
@@ -68,9 +70,11 @@ Options({
 class Puzzle extends Vue {
   readonly state = Store.state;
   puzzles: Record<number, Component> = {
+    1: One,
     2: Two,
     3: Three,
     4: Four,
+    5: Five,
   };
   progress = setup(() => useProgress());
 }

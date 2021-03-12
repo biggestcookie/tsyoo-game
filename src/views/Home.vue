@@ -3,18 +3,26 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered has-text-centered">
-          <div class="column is-half">
+          <div class="column is-one-third">
             <p class="title has-text-primary is-uppercase is-1">tsyoo game</p>
+            <h2 class="has-text-grey-light is-size-5 my-4">Rules</h2>
+            <div class="content has-text-left has-text-grey-light">
+              <p>1. Google is allowed.</p>
+              <p>2. Developer tools / inspecting code is not.</p>
+              <p>3. You must send proof upon completion.</p>
+            </div>
             <div class="is-flex is-justify-content-space-evenly">
               <button
                 v-if="!hasProgress"
                 @click="start()"
+                :class="{ 'is-loading': loading }"
                 class="appear button has-text-primary"
               >
                 Start
               </button>
               <router-link
                 v-else
+                :class="{ 'is-loading': loading }"
                 class="button is-primary"
                 :to="{
                   name: 'Puzzle',
@@ -80,11 +88,13 @@ import { useProgress } from "../use/progress";
 
 class Home extends Vue {
   readonly state = Store.state;
+  loading = false;
   hasProgress = this.state.reachedPage > 0;
 
   progress = setup(() => useProgress());
 
   start() {
+    this.loading = true;
     if (!this.progress.hasReachedPage) {
       Store.setPageReached(1);
       localStorage.setItem("startTime", new Date().getTime().toString());

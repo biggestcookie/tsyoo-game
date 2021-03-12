@@ -8,12 +8,14 @@ export class Store {
       "2": 0,
       "3": 0,
       "4": 0,
+      "5": 0,
     } as Record<string, number>,
     hintUsed: {
       "1": false,
       "2": false,
       "3": false,
       "4": false,
+      "5": false,
     } as Record<string, boolean>,
   });
   public static readonly state = Store._state;
