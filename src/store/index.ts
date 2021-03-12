@@ -28,6 +28,17 @@ export class Store {
     const lastGuesses = localStorage.getItem("wrongGuesses");
     if (lastGuesses) {
       Store._state.wrongGuesses = JSON.parse(lastGuesses);
+    } else {
+      localStorage.setItem(
+        "wrongGuesses",
+        JSON.stringify(Store._state.wrongGuesses)
+      );
+    }
+    const lastHints = localStorage.getItem("hintUsed");
+    if (lastHints) {
+      Store._state.hintUsed = JSON.parse(lastHints);
+    } else {
+      localStorage.setItem("hintUsed", JSON.stringify(Store._state.hintUsed));
     }
   }
 

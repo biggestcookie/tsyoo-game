@@ -5,8 +5,8 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-half">
             <h1 class="is-size-1 has-text-success">YOU ARE WINNER!</h1>
-            <img src="/assets/images/drip.png" />
-            <audio id="audio">
+            <img class="drip" src="/assets/images/drip.png" />
+            <audio autoplay id="audio">
               <source src="/assets/scrubs.mp3" type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
@@ -23,9 +23,10 @@
                     >
                     <span
                       v-if="state.wrongGuesses[index] && state.hintUsed[index]"
-                      >and</span
                     >
-                    <span v-if="state.hintUsed[index]"> used a hint </span>
+                      and
+                    </span>
+                    <span v-if="state.hintUsed[index]">used a hint </span>
                     on question {{ index }}.
                   </span>
                 </div>
@@ -46,6 +47,9 @@
 .hero {
   background-image: url("https://www.zingerbug.com/Backgrounds/background_images/starry_sky_glitter_background_seamless.gif");
   background-repeat: repeat;
+}
+.drip {
+  height: 40vh;
 }
 </style>
 

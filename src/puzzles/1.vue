@@ -16,10 +16,10 @@
               &lt;
             </button>
           </div>
-          <images :imageSrc="letter[count]" :text="texts[count]" />
+          <images :imageSrc="letters[count]" :text="texts[count]" />
           <div class="next">
             <button
-              v-show="count < letter.length"
+              v-show="count < letters.length - 1"
               @click="count++"
               class="button is-primary is-family-secondary"
             >
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <password :pageNumber="1" placeholder="enter keyword" />
+      <password :pageNumber="1" placeholder="enter password" />
     </div>
     <div class="is-overlay background"></div>
   </div>
@@ -55,7 +55,16 @@ import Password from "../components/Password.vue";
   components: { Images, Password },
 })
 class Two extends Vue {
-  letter = ["0", "00", "001", "0011", "00110", "001100", "0011000", "00110001"];
+  letters = [
+    "0",
+    "00",
+    "001",
+    "0011",
+    "00110",
+    "001100",
+    "0011000",
+    "00110001",
+  ];
   texts = [
     "Relaxing in Chair",
     "The Keyboard",
