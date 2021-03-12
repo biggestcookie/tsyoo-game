@@ -1,21 +1,25 @@
 <template>
-  <div>
-    <form @submit="checkAnswer()" v-on:submit.prevent.self class="is-flex">
-      <input
-        class="input has-text-primary mr-4"
-        type="text"
-        v-model="answer"
-        :placeholder="placeholder"
-      />
-      <input type="submit" value="enter" />
-    </form>
+  <form @submit="checkAnswer()" v-on:submit.prevent.self class="is-flex">
+    <input
+      class="input has-text-primary mr-4"
+      type="text"
+      v-model="answer"
+      :placeholder="placeholder"
+    />
+    <input type="submit" value="enter" />
+  </form>
+  <div class="my-4">
     <span v-if="isWrong" class="wrong has-text-danger">
       {{ wrongMessages[messageIndex] }}
     </span>
-    <a class="has-text-warning" v-if="!showHint" @click="showHint = true">
+    <a
+      :class="isWrong ? 'has-text-warning' : 'has-text-primary'"
+      v-if="!showHint"
+      @click="showHint = true"
+    >
       Need a hint?
     </a>
-    <hint :pageNumber="1" :showHint="showHint" />
+    <hint :pageNumber="pageNumber" :showHint="showHint" />
   </div>
 </template>
 

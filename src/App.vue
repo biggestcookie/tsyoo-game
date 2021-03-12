@@ -1,7 +1,9 @@
 <template>
-  <transition name="wipe">
-    <router-view />
-  </transition>
+  <router-view v-slot="{ Component }">
+    <transition name="wipe">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <style lang="scss">

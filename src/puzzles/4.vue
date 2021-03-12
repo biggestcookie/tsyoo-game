@@ -1,7 +1,7 @@
 <template>
   <div class="column is-half puzzle-1">
     <div class="content">
-      <h1 class="is-bold has-text-primary my-5">game one</h1>
+      <h1 class="is-bold has-text-primary my-5">game four</h1>
       <div class="block has-background-light p-6">
         <p class="has-text-justified">
           Thomas has been found dead in his apartment. <br /><br />
@@ -21,27 +21,25 @@
         <div class="note has-text-centered my-6 is-size-3">
           December 1st, January 2nd, March 3rd, July 4th, April 5th
         </div>
-        <p class="has-text-justified">Who murdered Thomas?</p>
       </div>
     </div>
-    <password :pageNumber="1" placeholder="who did it?" />
+    <password :pageNumber="4" placeholder="who murdered thomas?" />
+    <div class="is-overlay"></div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Cardo&family=Reenie+Beanie&display=swap");
 
-.hero {
-  background: #351414;
+.is-overlay {
+  background: #1f0b0b;
 }
 
-.puzzle-1 {
-  p {
-    font-family: "Cardo", serif;
-  }
-  .note {
-    font-family: "Reenie Beanie", serif;
-  }
+p {
+  font-family: "Cardo", serif;
+}
+.note {
+  font-family: "Reenie Beanie", serif;
 }
 </style>
 
@@ -50,11 +48,8 @@ import { Options, Vue } from "vue-class-component";
 import Password from "../components/Password.vue";
 
 @Options({
-  name: "One",
-  components: {
-    Password,
-  },
+  components: { Password },
 })
-class One extends Vue {}
-export default One;
+class Four extends Vue {}
+export default Four;
 </script>

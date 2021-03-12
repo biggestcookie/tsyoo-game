@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!hasProgress" class="is-overlay"></div>
+    <div v-if="!hasProgress" class="is-overlay fader"></div>
   </section>
 </template>
 
@@ -44,7 +44,7 @@
 </style>
 
 <style lang="scss">
-.is-overlay {
+.fader {
   z-index: 1;
   pointer-events: none;
   background: black;
