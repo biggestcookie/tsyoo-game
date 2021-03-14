@@ -4,7 +4,7 @@
       <h1 class="is-bold has-text-primary">game two</h1>
       <div class="block my-6">
         <p class="is-family-secondary has-text-primary">
-          what is found on water's surface, but is never wet?
+          what is found on water, but is never wet?
         </p>
       </div>
       <password :pageNumber="2" placeholder="enter answer" />
@@ -17,7 +17,6 @@
 .background {
   background: #075e5e;
 }
-
 </style>
 
 <script lang="ts">

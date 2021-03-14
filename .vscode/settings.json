@@ -17,6 +17,4 @@
     "prettier.arrowParens": "always",
     "vetur.format.defaultFormatter.ts": "prettier",
     "vetur.format.defaultFormatter.html": "prettier",
-    "discord.detailsEditing": "{}",
-    "discord.detailsDebugging": "{}",
 }

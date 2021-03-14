@@ -98,6 +98,8 @@ class Home extends Vue {
     if (!this.progress.hasReachedPage) {
       Store.setPageReached(1);
       localStorage.setItem("startTime", new Date().getTime().toString());
+    } else if (this.progress.pageNumber > 5) {
+      this.$router.push("/final");
     }
     this.$router.push({
       name: "Puzzle",

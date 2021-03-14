@@ -2,6 +2,7 @@
   <div class="column is-three-quarters puzzle-1">
     <div class="content">
       <h1 class="is-bold has-text-success my-5">game three</h1>
+      <h2 class="is-size-4 py-4 has-text-primary">What's that spell?</h2>
       <div class="block">
         <div
           class="clocks has-text-success is-flex is-justify-content-space-between is-justify-content-space-between my-6"

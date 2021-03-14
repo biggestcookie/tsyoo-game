@@ -5,7 +5,6 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-half">
             <h1 class="is-size-1 has-text-success">YOU ARE WINNER!</h1>
-            <img class="drip" src="/assets/images/drip.png" />
             <audio autoplay id="audio">
               <source src="/assets/scrubs.mp3" type="audio/mpeg" />
               Your browser does not support the audio element.
@@ -31,10 +30,11 @@
                   </span>
                 </div>
               </div>
-              <h1 class="has-text-warning">CONGRATULATIONS!!</h1>
               <p class="has-text-info">
-                Send this page to bigcookie to collect your prize :^)
+                You completed this in
+                {{ formatMsToTime(new Date().getTime() - startTime) }}
               </p>
+              <h1 class="has-text-warning">CONGRATULATIONS!!</h1>
             </div>
           </div>
         </div>
@@ -59,10 +59,28 @@ import { Store } from "../store";
 
 class Final extends Vue {
   private readonly state = Store.state;
+  startTime: number;
+
+  beforeMount() {
+    this.startTime = Number(localStorage.getItem("startTime"));
+  }
 
   mounted() {
+    if (this.state.reachedPage < 6) {
+      this.$router.push("/");
+    }
+
     const audio = document.getElementById("audio") as HTMLAudioElement;
     audio.volume = 0.2;
+  }
+
+  formatMsToTime(timeInMiliseconds: number) {
+    let h, m, s;
+    h = Math.floor(timeInMiliseconds / 1000 / 60 / 60);
+    m = Math.floor((timeInMiliseconds / 1000 / 60 / 60 - h) * 60);
+    s = Math.floor(((timeInMiliseconds / 1000 / 60 / 60 - h) * 60 - m) * 60);
+
+    return `${h} hours, ${m} minutes, and ${s} seconds`;
   }
 }
 

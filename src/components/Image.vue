@@ -4,7 +4,7 @@
       <p>&ldquo;{{ text }}&rdquo;</p>
     </div>
     <figure class="image">
-      <img class="frame" src="/assets/images/frame.png" />
+      <!-- <img class="frame" src="/assets/images/frame.png" /> -->
       <div class="overlay">
         <img
           :src="'/assets/images/' + imageSrc + '.png'"
@@ -25,6 +25,10 @@
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+::-moz-selection,
+::selection {
+  background: $blue;
+}
 
 .image {
   margin-top: 4em !important;

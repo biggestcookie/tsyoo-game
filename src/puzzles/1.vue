@@ -3,7 +3,7 @@
     <div class="content">
       <h1 class="is-bold has-text-primary">game one</h1>
       <div class="block my-6 pb-6 has-background-light">
-        <h2 class="is-size-4 py-4">Give me color.</h2>
+        <h2 class="is-size-4 py-4">Color me in.</h2>
         <div
           class="is-flex is-justify-content-space-evenly is-align-items-center"
         >
