@@ -35,6 +35,9 @@
                 {{ formatMsToTime(new Date().getTime() - startTime) }}
               </p>
               <h1 class="has-text-warning">CONGRATULATIONS!!</h1>
+              <button @click="reset()" class="button is-primary">
+                Start over?
+              </button>
             </div>
           </div>
         </div>
@@ -72,6 +75,12 @@ class Final extends Vue {
 
     const audio = document.getElementById("audio") as HTMLAudioElement;
     audio.volume = 0.2;
+  }
+
+  reset() {
+    Store.reset();
+    localStorage.clear();
+    this.$router.push("/");
   }
 
   formatMsToTime(timeInMiliseconds: number) {

@@ -25,7 +25,9 @@
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
-::-moz-selection,
+::-moz-selection {
+  background: $blue;
+}
 ::selection {
   background: $blue;
 }

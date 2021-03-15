@@ -27,6 +27,8 @@ export function useProgress() {
     const routeNumber = Number(latestParams?.pageNumber);
     if (routeNumber < 1) {
       router.push("/");
+    } else if (routeNumber > 5) {
+      router.push("/final");
     }
     pageNumber.value = routeNumber;
     hasReachedPage.value = pageNumber.value <= Store.state.reachedPage;

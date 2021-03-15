@@ -59,6 +59,24 @@ export class Store {
     Store._state.hintUsed[pageNumber.toString()] = true;
     localStorage.setItem("hintUsed", JSON.stringify(Store._state.hintUsed));
   }
+
+  public static reset() {
+    this.setPageReached(0);
+    this._state.wrongGuesses = {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+    };
+    this._state.hintUsed = {
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false,
+      "5": false,
+    };
+  }
 }
 
 new Store();
