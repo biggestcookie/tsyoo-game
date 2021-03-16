@@ -58,10 +58,10 @@
 
 <script lang="ts">
 import { Vue } from "vue-class-component";
-import { Store } from "../store";
+import { store } from "../store";
 
 class Final extends Vue {
-  private readonly state = Store.state;
+  private readonly state = store.state;
   startTime: number;
 
   beforeMount() {
@@ -78,7 +78,7 @@ class Final extends Vue {
   }
 
   reset() {
-    Store.reset();
+    store.reset();
     localStorage.clear();
     this.$router.push("/");
   }

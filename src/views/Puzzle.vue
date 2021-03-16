@@ -61,14 +61,14 @@ import Two from "../puzzles/2.vue";
 import Three from "../puzzles/3.vue";
 import Four from "../puzzles/4.vue";
 import Five from "../puzzles/5.vue";
-import { Store } from "../store";
+import { store } from "../store";
 import { useProgress } from "../use/progress";
 
 Options({
   components: { Password },
 });
 class Puzzle extends Vue {
-  readonly state = Store.state;
+  readonly state = store.state;
   puzzles: Record<number, Component> = {
     1: One,
     2: Two,

@@ -6,13 +6,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Store } from "../store";
+import { store } from "../store";
 import { hints } from "../use/answers";
 
 export default defineComponent({
   props: {
-    showHint: Boolean,
-    pageNumber: Number,
+    showHint: { type: Boolean, required: true },
+    pageNumber: { type: Number, required: true },
   },
   data: () => ({
     hints: hints,
@@ -20,7 +20,7 @@ export default defineComponent({
   watch: {
     showHint(value: boolean) {
       if (value) {
-        Store.addHintUsed(this.pageNumber!);
+        store.addHintUsed(this.pageNumber);
       }
     },
   },

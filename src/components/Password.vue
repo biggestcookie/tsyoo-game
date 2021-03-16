@@ -38,7 +38,7 @@ a:hover {
 <script lang="ts">
 import { defineComponent } from "vue";
 import Hint from "../components/Hint.vue";
-import { Store } from "../store";
+import { store } from "../store";
 import { answers } from "../use/answers";
 
 export default defineComponent({
@@ -53,32 +53,32 @@ export default defineComponent({
     loading: false,
   }),
   props: {
-    pageNumber: Number,
-    placeholder: String,
+    pageNumber: { type: Number, required: true },
+    placeholder: { type: String, required: true },
   },
   computed: {
     messageIndex(): number {
-      return Store.state.wrongGuesses[this.pageNumber!.toString()] % 2;
+      return store.state.wrongGuesses[this.pageNumber!.toString()] % 2;
     },
   },
   methods: {
     checkAnswer() {
       this.loading = true;
       if (this.answer.toLowerCase() === answers[this.pageNumber!]) {
-        Store.setPageReached(this.pageNumber! + 1);
+        store.setPageReached(this.pageNumber! + 1);
         this.$router.push(
-          Store.state.reachedPage > 5
+          store.state.reachedPage > 5
             ? "/final"
             : {
                 name: "Puzzle",
                 params: {
-                  pageNumber: Store.state.reachedPage,
+                  pageNumber: store.state.reachedPage,
                 },
               }
         );
       } else {
         this.isWrong = true;
-        Store.addWrongGuess(this.pageNumber!);
+        store.addWrongGuess(this.pageNumber!);
       }
       this.loading = false;
     },

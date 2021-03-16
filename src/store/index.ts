@@ -1,7 +1,7 @@
-import { reactive } from "vue";
+import { reactive, readonly } from "vue";
 
-export class Store {
-  private static _state = reactive({
+class Store {
+  private _state = reactive({
     reachedPage: 0,
     wrongGuesses: {
       "1": 0,
@@ -18,49 +18,49 @@ export class Store {
       "5": false,
     } as Record<string, boolean>,
   });
-  public static readonly state = Store._state;
+  public readonly state = readonly(this._state);
 
   constructor() {
     const lastReachedPage = localStorage.getItem("reachedPage");
     if (lastReachedPage) {
-      Store._state.reachedPage = Number(lastReachedPage);
+      this._state.reachedPage = Number(lastReachedPage);
     }
     const lastGuesses = localStorage.getItem("wrongGuesses");
     if (lastGuesses) {
-      Store._state.wrongGuesses = JSON.parse(lastGuesses);
+      this._state.wrongGuesses = JSON.parse(lastGuesses);
     } else {
       localStorage.setItem(
         "wrongGuesses",
-        JSON.stringify(Store._state.wrongGuesses)
+        JSON.stringify(this._state.wrongGuesses)
       );
     }
     const lastHints = localStorage.getItem("hintUsed");
     if (lastHints) {
-      Store._state.hintUsed = JSON.parse(lastHints);
+      this._state.hintUsed = JSON.parse(lastHints);
     } else {
-      localStorage.setItem("hintUsed", JSON.stringify(Store._state.hintUsed));
+      localStorage.setItem("hintUsed", JSON.stringify(this._state.hintUsed));
     }
   }
 
-  public static setPageReached(pageNumber: number) {
-    Store._state.reachedPage = pageNumber;
+  public setPageReached(pageNumber: number) {
+    this._state.reachedPage = pageNumber;
     localStorage.setItem("reachedPage", pageNumber.toString());
   }
 
-  public static addWrongGuess(pageNumber: number) {
-    Store._state.wrongGuesses[pageNumber.toString()]++;
+  public addWrongGuess(pageNumber: number) {
+    this._state.wrongGuesses[pageNumber.toString()]++;
     localStorage.setItem(
       "wrongGuesses",
-      JSON.stringify(Store._state.wrongGuesses)
+      JSON.stringify(this._state.wrongGuesses)
     );
   }
 
-  public static addHintUsed(pageNumber: number) {
-    Store._state.hintUsed[pageNumber.toString()] = true;
-    localStorage.setItem("hintUsed", JSON.stringify(Store._state.hintUsed));
+  public addHintUsed(pageNumber: number) {
+    this._state.hintUsed[pageNumber.toString()] = true;
+    localStorage.setItem("hintUsed", JSON.stringify(this._state.hintUsed));
   }
 
-  public static reset() {
+  public reset() {
     this.setPageReached(0);
     this._state.wrongGuesses = {
       "1": 0,
@@ -79,4 +79,4 @@ export class Store {
   }
 }
 
-new Store();
+export const store = new Store();

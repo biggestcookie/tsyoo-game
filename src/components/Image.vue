@@ -4,13 +4,12 @@
       <p>&ldquo;{{ text }}&rdquo;</p>
     </div>
     <figure class="image">
-      <!-- <img class="frame" src="/assets/images/frame.png" /> -->
       <div class="overlay">
         <img
           :src="'/assets/images/' + imageSrc + '.png'"
           draggable="false"
           v-on:contextmenu.prevent.self
-          @contextmenu="alerting()"
+          @contextmenu="alertUser()"
         />
       </div>
       <div>
@@ -43,13 +42,11 @@
     position: absolute;
     left: -53px;
     top: -53px;
-    user-drag: none;
     -webkit-user-drag: none;
     position: absolute;
   }
   .overlay {
     user-select: none;
-    user-drag: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
@@ -66,25 +63,17 @@ p {
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Store } from "../store";
 
 export default defineComponent({
   data: () => ({
     str: "/assets/images/0.jpg",
   }),
   props: {
-    imageSrc: String,
-    text: String,
-  },
-  watch: {
-    showHint(value: boolean) {
-      if (value) {
-        Store.addHintUsed(this.pageNumber!);
-      }
-    },
+    imageSrc: { type: String, required: true },
+    text: { type: String, required: true },
   },
   methods: {
-    alerting() {
+    alertUser() {
       alert("No saving.");
     },
   },

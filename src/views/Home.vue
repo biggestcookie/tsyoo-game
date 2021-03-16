@@ -83,11 +83,11 @@
 
 <script lang="ts">
 import { setup, Vue } from "vue-class-component";
-import { Store } from "../store";
+import { store } from "../store";
 import { useProgress } from "../use/progress";
 
 class Home extends Vue {
-  readonly state = Store.state;
+  readonly state = store.state;
   loading = false;
   hasProgress = this.state.reachedPage > 0;
 
@@ -96,7 +96,7 @@ class Home extends Vue {
   start() {
     this.loading = true;
     if (!this.progress.hasReachedPage) {
-      Store.setPageReached(1);
+      store.setPageReached(1);
       localStorage.setItem("startTime", new Date().getTime().toString());
     } else if (this.progress.pageNumber > 5) {
       this.$router.push("/final");
@@ -104,7 +104,7 @@ class Home extends Vue {
     this.$router.push({
       name: "Puzzle",
       params: {
-        pageNumber: Store.state.reachedPage,
+        pageNumber: store.state.reachedPage,
       },
     });
   }
